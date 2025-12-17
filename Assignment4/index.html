@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2 style="text-align: center;">Add the task into ToDo List!!!!</h2>
+
+<div class="card" >
+    <h2 style="text-align: center;">ToDo App</h2>
+    <form id="todo-form" class="input-group">
+        <input type="text" id="text-input" placeholder="Type something..." />
+        <button type="submit">Add</button>
+    </form>
+
+    <!-- Task List -->
+    <ul id="todo-list"></ul>
+</div>
+
+
+
+ <script>
+        const form = document.getElementById("todo-form");
+        const input = document.getElementById("text-input");
+        const todoList = document.getElementById("todo-list");
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const taskText = input.value.trim();
+            if(taskText === "") return;
+
+            // Create a new list item
+            const li = document.createElement("li");
+            li.innerText = taskText;
+
+            // Optional: Add a delete button
+            const delBtn = document.createElement("button");
+            delBtn.innerText = "Delete";
+            delBtn.className = "delete-btn";
+            delBtn.addEventListener("click", () => li.remove());
+
+            li.appendChild(delBtn);
+
+            // Add to the list
+            todoList.appendChild(li);
+
+            // Clear input
+            input.value = "";
+        });
+    </script>
+
+
+</body>
+</html>
